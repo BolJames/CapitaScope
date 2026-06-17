@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Dashboard - GlobalVestz Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-left">
+                    <img class="logo" src="images/logo.png" alt="GlobalVest Logo">
+                    <span class="brand-name">GlobalVest</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#profile">My Profile</a></li>
+                    <li><a href="#meetings">Meetings</a></li>
+                    <li><a href="subscriptions.html">Upgrade Plan</a></li>
+                    <li><a href="index.html" id="logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-container">
+            <div id="profile" class="dashboard-section">
+                <h2>My Startup Profile</h2>
+                <div id="profileContent">
+                    <p>Welcome! Create your startup profile to get started with finding investors.</p>
+                </div>
+                <button id="editProfileBtn" class="btn-primary">Create Profile</button>
+            </div>
+
+            <div id="meetings" class="dashboard-section">
+                <h2>Scheduled Meetings</h2>
+                <div id="meetingsContent"></div>
+            </div>
+
+            <!-- 🎯 SUBSCRIPTION SECTION - Navigate to subscriptions.html -->
+            <div style="display: none;">
+                <!-- This section is now on the dedicated subscriptions.html page -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Startup Profile</h2>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label for="name">Startup Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="industry">Industry</label>
+                    <input type="text" id="industry" required>
+                </div>
+                <div class="form-group">
+                    <label for="funding_needed">Funding Needed ($)</label>
+                    <input type="number" id="funding_needed" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" id="website">
+                </div>
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+ <script src="./js/startup-dashboard.js"></script>
+</body>
+</html>

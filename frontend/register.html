@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - CapitaScope Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-form">
+            <h2>Join CapitaScope</h2>
+            <form id="registerForm">
+
+                 <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+
+                 <div class="form-group">
+                    <label for="address">Address</label>
+ 
+<div class="country-dropdown">
+    <input type="text" id="countrySearch" placeholder="Search country..." autocomplete="off">
+    <div id="countryList" class="dropdown-list"></div>
+
+    <!-- hidden input for form submission -->
+    <input type="hidden" id="address" name="country" required>
+</div>
+                </div>
+
+                  <div class="form-group">
+                    <label for="phone">Telephone</label>
+                    <input type="text" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">I am a:</label>
+                    <select id="role" required>
+                        <option value="">Select role</option>
+                        <option value="startup">Startup</option>
+                        <option value="investor">Investor</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

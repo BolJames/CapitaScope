@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriptions - CapitaScope Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/subscriptions.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-left">
+                    <span class="brand-name">CapitaScope</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="startup-dashboard.html">Dashboard</a></li>
+                    <li><a href="subscriptions.html" class="active">Subscriptions</a></li>
+                    <li><a href="index.html" id="logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="subscriptions-main">
+        <!-- Hero Section -->
+        <div class="subscriptions-hero">
+            <div class="container">
+                <h1 class="hero-title">Choose Your Plan</h1>
+                <p class="hero-subtitle">Unlock powerful features to accelerate your startup growth</p>
+            </div>
+        </div>
+
+        <!-- Current Subscription Section -->
+        <section class="subscriptions-section">
+            <div class="container">
+                <div id="currentSubscriptionContainer"></div>
+            </div>
+        </section>
+
+        <!-- Billing Toggle -->
+        <section class="subscriptions-section">
+            <div class="container">
+                <div class="billing-toggle-container">
+                    <div class="billing-toggle">
+                        <button class="toggle-btn active" data-billing="monthly">
+                            <span>Monthly</span>
+                        </button>
+                        <button class="toggle-btn" data-billing="annual">
+                            <span>Annual</span>
+                            <span class="save-badge">Save 20%</span>
+                        </button>
+                    </div>
+                    <div class="currency-selector">
+                        <label for="currencySelect">Currency:</label>
+                        <select id="currencySelect" class="currency-select">
+                            <option value="USD">🇺🇸 USD ($)</option>
+                            <option value="SSP">🇸🇸 SSP</option>
+                            <option value="khs">🇰🇭 khs</option>
+                            <option value="AUD">🇦🇺 AUD (A$)</option>
+                            <option value="JPY">🇯🇵 JPY (¥)</option>
+                            <option value="INR">🇮🇳 INR (₹)</option>
+                            <option value="CAD">🇨🇦 CAD (C$)</option>
+                            <option value="EUR">🇪🇺 EUR (€)</option>
+                            <option value="GBP">🇬🇧 GBP (£)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plans Grid -->
+        <section class="subscriptions-section plans-section">
+            <div class="container">
+                <div class="plans-grid" id="plansContainer"></div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="subscriptions-section faq-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Can I change plans anytime?</h3>
+                        <p>Yes, you can upgrade or downgrade your plan at any time. Changes will reflect in your next billing cycle.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What payment methods do you accept?</h3>
+                        <p>We accept all major credit cards, debit cards, and digital payment methods for your convenience.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Is there a free trial?</h3>
+                        <p>Yes, start with our Free plan to explore basic features. Upgrade anytime when you're ready.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do you offer refunds?</h3>
+                        <p>We offer a 30-day money-back guarantee if you're not satisfied with your purchase.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Message Box -->
+        <div id="messageBox" class="message-box"></div>
+    </main>
+
+</body>
+</html>
