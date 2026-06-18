@@ -1,5 +1,5 @@
 // ================= CONFIG =================
-const API_BASE = "https://capitascope.onrender.com /api/v1"; // Replace with your backend API base URL
+const API_BASE = "https://capitascope.onrender.com/api"; // Replace with your backend API base URL
 
 let allCountries = [];
 
