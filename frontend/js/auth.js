@@ -1,5 +1,5 @@
 // ================= CONFIG =================
-const API_BASE = "https://capitascope.onrender.com/api"; // Replace with your backend API base URL
+const API_BASE = "https://capitascope.onrender.com /api/v1"; // Replace with your backend API base URL
 
 let allCountries = [];
 
@@ -157,14 +157,14 @@ async function handleRegister(e) {
             body: JSON.stringify({ email, password, role })
         });
 
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
 
         if (response.ok) {
             // Registration successful, redirect to login
             alert('Registration successful! Please login with your credentials.');
             window.location.href = 'login.html';
         } else {
-            alert(data.error || 'Registration failed');
+            alert(data.error || data.message || 'Registration failed');
         }
     } catch (error) {
         console.error('Registration error:', error);
@@ -188,9 +188,9 @@ async function handleLogin(e) {
             body: JSON.stringify({ email, password })
         });
 
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
 
-        if (response.ok) {
+        if (response.ok && data.token && data.user) {
             // Store token and user data
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
@@ -207,7 +207,7 @@ async function handleLogin(e) {
                 window.location.href = 'dashboard.html';
             }
         } else {
-            alert(data.error || 'Login failed');
+            alert(data.error || data.message || 'Login failed');
         }
     } catch (error) {
         console.error('Login error:', error);

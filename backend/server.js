@@ -28,32 +28,27 @@ const app = express();
 
 app.use(helmet());
 
-const allowedOrigins = [
-    'http://localhost:3000',
-    'http://127.0.0.1:5500',
-    process.env.FRONTEND_URL
-];
-
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (
-            !origin ||
-            allowedOrigins.includes(origin) ||
-            origin === 'null'
-        ) {
-            callback(null, true);
-        } else {
-            console.error('❌ Blocked by CORS:', origin);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: (origin, callback) => callback(null, true),
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept']
 };
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+    }
+
+    next();
+});
 
 /* =========================
    🛡️ RATE LIMIT
