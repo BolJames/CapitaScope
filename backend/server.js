@@ -26,21 +26,21 @@ const app = express();
    🔐 SECURITY
 ========================= */
 
-// Secure headers
 app.use(helmet());
 
-// Allowed frontend origins
 const allowedOrigins = [
     'http://localhost:3000',
-    'http://127.0.0.1:5500'
+    'http://127.0.0.1:5500',
+    process.env.FRONTEND_URL
 ];
 
-// CORS config
 const corsOptions = {
     origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps, curl requests, Postman)
-        // Allow file:// protocol (for opening HTML files directly in browser)
-        if (!origin || allowedOrigins.includes(origin) || origin === 'null') {
+        if (
+            !origin ||
+            allowedOrigins.includes(origin) ||
+            origin === 'null'
+        ) {
             callback(null, true);
         } else {
             console.error('❌ Blocked by CORS:', origin);
@@ -53,8 +53,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// 🔥 IMPORTANT (handles preflight requests)
 app.options('*', cors(corsOptions));
 
 /* =========================
@@ -66,7 +64,6 @@ app.use(rateLimit({
     max: 100
 }));
 
-// Chatbot limiter
 const chatLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 20
@@ -99,7 +96,10 @@ app.use('/api/meeting-requests', meetingRequestRoutes);
 ========================= */
 
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'OK', time: new Date() });
+    res.json({
+        status: 'OK',
+        time: new Date()
+    });
 });
 
 /* =========================
@@ -107,7 +107,9 @@ app.get('/api/health', (req, res) => {
 ========================= */
 
 app.use((req, res) => {
-    res.status(404).json({ error: 'Route not found' });
+    res.status(404).json({
+        error: 'Route not found'
+    });
 });
 
 /* =========================
@@ -116,7 +118,9 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
     console.error(err.message);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+        error: err.message
+    });
 });
 
 /* =========================
@@ -130,10 +134,9 @@ app.listen(PORT, () => {
 });
 
 /* =========================
-   ⏰ SUBSCRIPTION RENEWAL SCHEDULER
+   ⏰ SUBSCRIPTION RENEWAL
 ========================= */
 
-// Run subscription renewal checks daily at 2:00 AM
 cron.schedule('0 2 * * *', async () => {
     try {
         console.log('⏰ Running scheduled subscription renewal check...');
@@ -143,5 +146,4 @@ cron.schedule('0 2 * * *', async () => {
     }
 });
 
-// Also run renewal check at server startup (optional, useful for testing)
-console.log('✅ Subscription renewal scheduler initialized (runs daily at 2:00 AM)');
+console.log('✅ Subscription renewal scheduler initialized');
