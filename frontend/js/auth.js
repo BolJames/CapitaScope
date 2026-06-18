@@ -1,5 +1,10 @@
 // ================= CONFIG =================
-const API_BASE = "https://capitascope.onrender.com /api/v1"; // Replace with your backend API base URL
+const API_BASE = (() => {
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    return isLocal
+        ? 'http://localhost:5000/api'
+        : 'https://capitascope.onrender.com/api';
+})();
 
 let allCountries = [];
 

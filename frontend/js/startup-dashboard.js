@@ -1,5 +1,11 @@
 // Startup Dashboard JavaScript
 
+const API_BASE = (() => {
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    return isLocal
+        ? 'http://localhost:5000/api'
+        : 'https://capitascope.onrender.com/api';
+})();
 
 document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token');
